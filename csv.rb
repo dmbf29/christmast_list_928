@@ -5,7 +5,7 @@ def load_csv
   filepath = 'gifts.csv'
   # TODO: build new gift list
   gift_list = {}
-  CSV.foreach(filepath, col_sep: ',', quote_char: '"', headers: :first_row, header_converters: :symbol) do |row|
+  CSV.foreach(filepath, headers: :first_row, header_converters: :symbol) do |row|
     # add each item into the gift_list
     item = row[:item]
     purchased = row[:purchased] == 'true'
@@ -16,7 +16,7 @@ end
 
 def save_csv(gift_list)
   filepath = 'gifts.csv'
-  CSV.open(filepath, 'wb', col_sep: ',', force_quotes: true, quote_char: '"') do |csv|
+  CSV.open(filepath, 'wb') do |csv|
     # We add headers to the CSV
     csv << ['item', 'purchased']
     # iterate over your gift list and write into the csv file
