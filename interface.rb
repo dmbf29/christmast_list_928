@@ -4,9 +4,13 @@ require_relative 'csv'
 gift_list = load_csv
 
 def display_list(gift_list)
-  gift_list.each_with_index do |(item, purchased), index|
-    x_mark = purchased ? "X" : " "
-    puts "#{index + 1} - [#{x_mark}] #{item}"
+  if gift_list.any?
+    gift_list.each_with_index do |(item, purchased), index|
+      x_mark = purchased ? "X" : " "
+      puts "#{index + 1} - [#{x_mark}] #{item}"
+    end
+  else
+    puts "No gifts yet 🎁😭"
   end
 end
 
